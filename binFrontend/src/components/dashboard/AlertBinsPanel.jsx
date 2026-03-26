@@ -1,5 +1,7 @@
 import { useState, useMemo } from 'react';
 
+<<<<<<< HEAD
+=======
 const SAMPLE_BINS = [
   { id: 102, address: 'Sector 62, Noida',    fillLevel: 95, change: 82,  zone: 'Zone A' },
   { id: 87,  address: 'Sector 15, Gurgaon',  fillLevel: 92, change: 92,  zone: 'Zone B' },
@@ -10,6 +12,7 @@ const SAMPLE_BINS = [
   { id: 78,  address: 'Connaught Place',     fillLevel: 93, change: 85,  zone: 'Zone A' },
 ];
 
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
 const ZONES = ['All Zones', 'Zone A', 'Zone B', 'Zone C'];
 
 const getLevel = (fill) => {
@@ -46,6 +49,17 @@ const AlertBinsPanel = ({ bins = [], routeSummary }) => {
   const [showLevel, setShowLevel] = useState(false);
 
   const source = useMemo(() => {
+<<<<<<< HEAD
+    return bins
+      .filter((b) => (b.fillLevel ?? 0) >= 90)
+      .map((b) => ({
+        id: b.id ?? b.binId,
+        address: b.address ?? b.location?.address ?? 'Unknown address',
+        fillLevel: b.fillLevel ?? 0,
+        change: b.change ?? 0,
+        zone: b.zone ?? 'Unknown'
+      }));
+=======
     if (bins.length > 0) {
       return bins
         .filter(b => (b.fillLevel ?? 0) >= 90)
@@ -58,6 +72,7 @@ const AlertBinsPanel = ({ bins = [], routeSummary }) => {
         }));
     }
     return SAMPLE_BINS;
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
   }, [bins]);
 
   const filtered = useMemo(() => {
@@ -74,8 +89,13 @@ const AlertBinsPanel = ({ bins = [], routeSummary }) => {
       .sort((a, b) => b.fillLevel - a.fillLevel);
   }, [source, search, zone, level]);
 
+<<<<<<< HEAD
+  const totalDist = routeSummary?.routeDistance ?? 0;
+  const estTime   = routeSummary?.estimatedTime ?? '--';
+=======
   const totalDist = routeSummary?.routeDistance ?? 82;
   const estTime   = routeSummary?.estimatedTime ?? '2 hr 05 min';
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col w-[240px] shrink-0 overflow-hidden">

@@ -2,13 +2,41 @@ const { prisma } = require('../config/db');
 
 async function get_all_bins() {
   return prisma.bin.findMany({
+<<<<<<< HEAD
+    orderBy: { bin_id: 'asc' },
+    include: {
+      location: {
+        select: {
+          location_id: true,
+          area_name: true,
+          latitude: true,
+          longitude: true
+        }
+      }
+    }
+=======
     orderBy: { bin_id: 'asc' }
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
   });
 }
 
 async function find_bin_by_id(bin_id) {
   return prisma.bin.findUnique({
+<<<<<<< HEAD
+    where: { bin_id },
+    include: {
+      location: {
+        select: {
+          location_id: true,
+          area_name: true,
+          latitude: true,
+          longitude: true
+        }
+      }
+    }
+=======
     where: { bin_id }
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
   });
 }
 

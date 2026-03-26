@@ -1,20 +1,34 @@
+<<<<<<< HEAD
+import { useState } from 'react';
+=======
 import { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
 import TotalBins    from './cards/TotalBins';
 import BinsAbove90  from './cards/BinsAbove90';
 import RouteDistance from './cards/RouteDistance';
 import FuelSaved    from './cards/FuelSaved';
 import AvgFillLevel from './cards/AvgFillLevel';
 import VehicleType  from './cards/VehicleType';
+<<<<<<< HEAD
+
+/* wrapper that adds click + pop animation to any card */
+const ClickCard = ({ children }) => {
+=======
 import KPIDetailModal from './KPIDetailModal';
 
 /* wrapper that adds click + pop animation to any card */
 const ClickCard = ({ id, onClick, children }) => {
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
   const [popping, setPopping] = useState(false);
 
   const handleClick = () => {
     setPopping(true);
+<<<<<<< HEAD
+    setTimeout(() => { setPopping(false); }, 220);
+=======
     setTimeout(() => { setPopping(false); onClick(id); }, 220);
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
   };
 
   return (
@@ -29,6 +43,22 @@ const ClickCard = ({ id, onClick, children }) => {
 };
 
 const KPIMetrics = ({ bins = [], analytics = {} }) => {
+<<<<<<< HEAD
+  const totalBins  = analytics.totalBins ?? bins.length;
+  const alertBins  = analytics.binsAbove90 ?? bins.filter(b => b.fillLevel >= 90).length;
+  const normalBins = totalBins - alertBins;
+
+  return (
+    <>
+      <div className="grid grid-cols-3 gap-3">
+        <ClickCard><TotalBins totalBins={totalBins} normalBins={normalBins} alertBins={alertBins}/></ClickCard>
+        <ClickCard><BinsAbove90 alertCount={analytics.binsAbove90 ?? 0} sinceYesterday={0}/></ClickCard>
+        <ClickCard><RouteDistance distance={analytics.routeDistance ?? 0} estimatedTime={analytics.estimatedTime ?? '--'}/></ClickCard>
+        <ClickCard><FuelSaved percentage={analytics.fuelSaved ?? 0}/></ClickCard>
+        <ClickCard><AvgFillLevel fillLevel={analytics.avgFillLevel ?? 0}/></ClickCard>
+        <ClickCard><VehicleType evPercentage={analytics.evPercentage ?? 0}/></ClickCard>
+      </div>
+=======
   const [activeModal, setActiveModal] = useState(null);
 
   const totalBins  = bins.length || 150;
@@ -66,6 +96,7 @@ const KPIMetrics = ({ bins = [], analytics = {} }) => {
         />,
         document.body
       )}
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
     </>
   );
 };
