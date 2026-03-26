@@ -1,6 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { login_request } from '../services/auth.service';
+=======
+import api from '../services/api';
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
 
 const AuthContext = createContext(null);
 
@@ -17,15 +21,20 @@ export const AuthProvider = ({ children }) => {
     
     if (storedToken && storedUser) {
       setToken(storedToken);
+<<<<<<< HEAD
       try {
         setUser(JSON.parse(storedUser));
       } catch {
         localStorage.removeItem('user');
       }
+=======
+      setUser(JSON.parse(storedUser));
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
     }
     setLoading(false);
   }, []);
 
+<<<<<<< HEAD
   const login = async (email, password) => {
     try {
       const response = await login_request({ email, password });
@@ -40,11 +49,37 @@ export const AuthProvider = ({ children }) => {
 
       setToken(login_data.token);
       setUser(login_data.user);
+=======
+  const login = async (username, password) => {
+    try {
+      // Mock login - replace with actual API call
+      // const response = await api.post('/auth/login', { username, password });
+      
+      // Mock response
+      const mockToken = 'mock-jwt-token-' + Date.now();
+      const mockUser = { 
+        id: 1, 
+        username, 
+        name: username.charAt(0).toUpperCase() + username.slice(1),
+        role: 'admin' 
+      };
+
+      localStorage.setItem('token', mockToken);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      
+      setToken(mockToken);
+      setUser(mockUser);
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
       
       navigate('/dashboard');
       return { success: true };
     } catch (error) {
+<<<<<<< HEAD
       return { success: false, error: error.message || 'Login failed. Please try again.' };
+=======
+      console.error('Login failed:', error);
+      return { success: false, error: error.message };
+>>>>>>> a370dd646ee6c7c0d95edc771f031057615feaf6
     }
   };
 
